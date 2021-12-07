@@ -4,7 +4,7 @@ LICENSE = "GPLv3"
 
 inherit module
 
-SRC_URI = "git://github.com/respeaker/seeed-voicecard.git;branch=master \
+SRC_URI = "git://github.com/respeaker/seeed-voicecard.git;branch=master;protocol=https \
 file://0001-patch-for-kernel-version-5.10.25.patch"
 SRCREV = "rel-v5.5"
 
