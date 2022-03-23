@@ -1,6 +1,6 @@
 SUMMARY = "seeed-voicecard module"
 DESCRIPTION = "${SUMMARY}"
-LICENSE = "GPLv3"
+LICENSE = "GPL-3.0-only"
 
 inherit module
 
