@@ -7,3 +7,33 @@ Please see the corresponding sections below for details.
 ## Adding the meta-voicecard layer to your build
 
 Run 'bitbake-layers add-layer meta-voicecard'
+
+## Seeed Voicecard
+
+To add Seeed voicecard support to your machine, add the following to `local.conf`
+
+```conf
+MACHINE_FEATURES += "seeed-voicecard"
+IMAGE_INSTALL:append:rpi = " kernel-module-seeed-voicecard"
+KERNEL_DEVICETREE:append:rpi = " \
+overlays/seeed-2mic-voicecard.dtbo \
+overlays/seeed-4mic-voicecard.dtbo \
+overlays/seeed-8mic-voicecard.dtbo \
+"
+RPI_EXTRA_CONFIG:append = "\n\
+dtoverlay=seeed-2mic-voicecard\n\
+"
+```
+
+`RPI_EXTRA_CONFIG` is configured to enable [reSpeaker 2-Mics Pi HAT for Raspberry Pi](https://www.seeedstudio.com/ReSpeaker-2-Mics-Pi-HAT.html) by default, change appropriately.
+
+On the device, you need to adjust volume and toggle some switches that are off by default
+
+```bash
+amixer -c1 sset 'Headphone',0 80%,80%
+amixer -c1 sset 'Speaker',0 80%,80%
+amixer -c1 sset 'Left Input Mixer Boost' toggle
+amixer -c1 sset 'Left Output Mixer PCM' toggle
+amixer -c1 sset 'Right Input Mixer Boost' toggle
+amixer -c1 sset 'Right Output Mixer PCM' toggle
+```
